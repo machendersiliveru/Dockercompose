@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  selector:
+    matchLabels:
+      component: backend
+  template:
+    metadata:
+      labels:
+        component: backend
+    spec:
+      containers:
+        - name: backend
+          image: schandu13/back
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PGDATABASE
+              value: loizenaidb
+            - name: PGUSER
+              value: postgres
+            - name: PGPASS
+              value: "123"
+            - name: PGHOST
+              value: postgres-cluster-service
+            - name: PGDIALECT
+              value: postgres
